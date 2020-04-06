@@ -1,11 +1,5 @@
 import React from 'react';
 
-const {
-  Provider: RoomsServiceProvider,
-  Consumer: RoomsServiceConsumer,
-} = React.createContext();
+const RoomsServiceContext = React.createContext();
 
-export {
-  RoomsServiceConsumer,
-  RoomsServiceProvider
-};
+export default RoomsServiceContext;

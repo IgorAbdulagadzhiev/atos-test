@@ -1,9 +1,3 @@
-import {
-  RoomsServiceProvider,
-  RoomsServiceConsumer
-} from './rooms-service-context';
+import RoomsServiceContext from './rooms-service-context';
 
-export {
-  RoomsServiceProvider,
-  RoomsServiceConsumer
-}
+export default RoomsServiceContext;
