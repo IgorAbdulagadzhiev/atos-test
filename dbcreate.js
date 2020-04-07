@@ -4,7 +4,7 @@ module.exports = () => {
     rooms: [
       {
         id: 1,
-        name: '1',
+        name: 'Переговорная',
         seats: 10,
         projector: true,
         board: true,
@@ -32,7 +32,7 @@ module.exports = () => {
       },
       {
         id: 2,
-        name: '2',
+        name: 'Конференц-зал',
         seats: 11,
         projector: true,
         board: false,
@@ -48,7 +48,7 @@ module.exports = () => {
       },
       {
         id: 3,
-        name: '3',
+        name: 'Комната с чудесами',
         seats: 11,
         projector: false,
         board: false,
@@ -64,7 +64,7 @@ module.exports = () => {
       },
       {
         id: 4,
-        name: '4',
+        name: 'Комната без описания',
         seats: 150,
         projector: false,
         board: true,

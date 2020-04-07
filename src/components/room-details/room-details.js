@@ -1,6 +1,4 @@
 import React from 'react';
-import { Table } from 'react-bootstrap';
-import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
@@ -18,27 +16,23 @@ const RoomDetails = ({ room }) => {
 
   return (
     <>
-    <h2 className="text-center">{ `комната ${name}`}</h2>
-    <span>{`в комнате ${seats} мест`}</span>
-    <Table bordered>
+    <h2 className="text-center">{name}</h2>
+    <p>{`в комнате ${seats} мест`}</p>
+    <table className="table table-bordered" >
       <tbody>
         <tr>
-          <td>{projectorIcon}</td>
+          <td style={{ minWidth: 50, }}>{projectorIcon}</td>
           <td className="w-100">проектор</td>
         </tr>
         <tr>
-          <td>{boardIcon}</td>
+          <td style={{ minWidth: 50, }}>{boardIcon}</td>
           <td className="w-100">доска</td>
         </tr>
       </tbody>
-    </Table>
+    </table>
     <p>{description}</p>
     </>
   )
 }
 
-const MapStateToProps = ({ userReducer: { rooms }}) => {
-  return { rooms };
-};
-
-export default connect(MapStateToProps)(RoomDetails);
+export default (RoomDetails);

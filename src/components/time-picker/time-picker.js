@@ -3,15 +3,15 @@ import React, { useState, useContext } from 'react';
 import DatePicker from 'react-datepicker';
 import ru from 'date-fns/locale/ru';
 import 'react-datepicker/dist/react-datepicker.css';
-import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { timePicked, roomsLoaded } from '../../actions';
 
 import {
   useParams,
   withRouter
 } from "react-router-dom";
 import RoomsServiceContext from '../rooms-service-context';
+
+import './time-picker.css';
 
 const TimePicker = ({name, history, selectRoom}) => {
   const [startDate, setStartDate] = useState(new Date());
@@ -51,48 +51,56 @@ const TimePicker = ({name, history, selectRoom}) => {
 
   return (
     <div>
-      <div>
-        <DatePicker 
-          selected={startDate}
-          onChange={date => setStartDate(date)}
-          locale={ru}
-          showTimeSelect
-          timeIntervals={30}
-          placeholderText="Начало ивента"
-          dateFormat="d.MM.yyyy H:mm"
-        />
-      </div>
-      <div>
-        <DatePicker 
-          selected={endDate}
-          onChange={date => setEndDate(date)}
-          locale={ru}
-          showTimeSelect
-          showTimeSelectOnly
-          timeIntervals={30}
-          placeholderText="Конец ивента"
-          dateFormat="H:mm"
+      <h2>Резервирование времени</h2>
+      <div className="form-group">
+        <label>Время начала</label>
+        <div>
+          <DatePicker 
+            className="form-control"
+            selected={startDate}
+            onChange={date => setStartDate(date)}
+            locale={ru}
+            showTimeSelect
+            timeIntervals={30}
+            placeholderText="Начало ивента"
+            dateFormat="d.MM.yyyy H:mm"
           />
+        </div>
       </div>
-      <div>
+      <div className="form-group">
+        <label>Время окончания</label>
+        <div>
+          <DatePicker
+            className="form-control"
+            selected={endDate}
+            onChange={date => setEndDate(date)}
+            locale={ru}
+            showTimeSelect
+            showTimeSelectOnly
+            timeIntervals={30}
+            placeholderText="Конец ивента"
+            dateFormat="H:mm"
+            />
+        </div>
+      </div>
+      <div className="form-group">
+        <label>Название мероприятия</label>
         <input 
+        className="form-control"
         type="text"
         onChange={(e) => setTitle(e.target.value) }
         value={title}/> 
       </div>
-      <Button onClick={btnHandler}>
+      <button className="btn btn-success" onClick={btnHandler}>
         Подтвердить
-      </Button>
+      </button>
     </div>
   )
 }
 
-const mapStateToProps = ({ userReducer: { rooms, name, selectRoom }}) => {
-  return { rooms, name, selectRoom }
+const mapStateToProps = ({ userReducer: { name, selectRoom }}) => {
+  return { name, selectRoom }
 }
 
-const mapDispatchToProps = {
-  timePicked, roomsLoaded
-}
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TimePicker));
+export default withRouter(connect(mapStateToProps)(TimePicker));

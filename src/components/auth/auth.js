@@ -13,8 +13,8 @@ const Auth = ({isLogIn, children}) => {
 
 }
 
-const mapStateToProps = ({ userReducer: { isLogIn }, form}) => {
-  return { isLogIn, form}
+const mapStateToProps = ({ userReducer: { isLogIn }}) => {
+  return { isLogIn }
 }
 
 export default connect(mapStateToProps)(Auth);

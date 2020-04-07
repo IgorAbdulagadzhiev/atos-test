@@ -58,7 +58,7 @@ const RoomsQueue = () => {
   return (
     <>
       <h2>Заявки</h2>
-      <ul className="list-group">
+      <ul className="list-group mb-3">
         {
           queue.map((item) => {
             const str = `${formatDate(item.reservedTime.startDate)} ${formatTime(item.reservedTime.startDate)} - ${formatTime(item.reservedTime.endDate)}`
@@ -67,14 +67,24 @@ const RoomsQueue = () => {
               className="list-group-item d-flex justify-content-between"
               key={item.id}
             >
-              <div>
-                <span>{`номер комнаты ${item.roomId}`}</span>
-                <span>{`${item.reservedTime.title}`}</span>
-                <span>{str}</span>
+              <div className="d-flex align-items-center">
+                <span>
+                  {`номер комнаты ${item.roomId} ${item.reservedTime.title} ${str}`}
+                </span>
               </div>
               <div>
-                <button><FontAwesomeIcon onClick={() => addItem(item.id, item.roomId, item.reservedTime)} icon={faCheck}/></button>
-                <button><FontAwesomeIcon onClick={() => deleteItem(item.id)} icon={faTimes}/></button>
+                <button 
+                style={{ width: 40, height: 40,}}
+                className="btn btn-success mr-2"
+                onClick={() => addItem(item.id, item.roomId, item.reservedTime)}>
+                  <FontAwesomeIcon icon={faCheck}/>
+                </button>
+                <button 
+                style={{ width: 40, height: 40,}}
+                className="btn btn-danger"
+                onClick={() => deleteItem(item.id)}>
+                  <FontAwesomeIcon icon={faTimes}/>
+              </button> 
               </div>
             </li>
             )

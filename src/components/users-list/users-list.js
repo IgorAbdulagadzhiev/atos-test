@@ -10,7 +10,6 @@ const UsersList = () => {
   useEffect(() => {
     roomsService.getUsers().then((data) => {
       setUsers(data);
-      console.log(data);
     })
   }, [roomsService])
 
@@ -19,6 +18,8 @@ const UsersList = () => {
   }
 
   return (
+    <>
+    <h2>Список пользователей</h2>
     <ul className="list-group">
       {
         users.map((user) => {
@@ -30,6 +31,7 @@ const UsersList = () => {
         })
       }
     </ul>
+    </>
   )
 }
 

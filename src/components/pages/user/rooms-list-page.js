@@ -8,7 +8,7 @@ const RoomsListPage = ({isAdmin}) => {
   const roomsQ = isAdmin ? 
   <div>
     <RoomsQueue/>
-    <Link to="/create">Добавить комнату</Link>
+    <Link className="btn btn-primary" to="/create">Добавить комнату</Link>
   </div> :
   null;
 

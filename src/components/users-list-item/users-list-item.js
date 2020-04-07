@@ -5,7 +5,6 @@ import RoomsServiceContext from '../rooms-service-context';
 const UsersListItem = ({ user }) => {
   const roomsService = useContext(RoomsServiceContext);
   const [admin, setAdmin] = useState(user.admin);
-  console.log(admin);
 
   const checkboxHandler = (e) => {
     setAdmin(e.target.checked);
@@ -13,9 +12,7 @@ const UsersListItem = ({ user }) => {
       ...user,
       admin: e.target.checked
     }
-    console.log(newUser);
     roomsService.putUser(user.id ,newUser).then((data) => {
-      console.log(data);
     });
   }
 
@@ -24,7 +21,8 @@ const UsersListItem = ({ user }) => {
     <>
       <span>{user.name}</span>
       <input 
-      type="checkbox" 
+      type="checkbox"
+      className="ml-4"
       checked={admin} 
       onChange={checkboxHandler} 
       />

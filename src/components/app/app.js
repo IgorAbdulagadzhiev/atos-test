@@ -1,12 +1,10 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import {
-  ReservationPage, 
   RoomsListPage, 
   RoomDescriptionPage,
   LoginPage,
-  AdminEditingPage,
-  AdminRoleManagmentPage} from '../pages';
+  } from '../pages';
 
 import TimePicker from '../time-picker';
 
@@ -19,15 +17,28 @@ import { Link } from 'react-router-dom';
 
 import { Container } from 'react-bootstrap';
 import UsersList from '../users-list';
+import EditingForm from '../editing-form';
+import Admin from '../admin';
 
 const App = ({logOut}) => {
 
   return (
     <Container>
       <Auth>
-        <button onClick={logOut}>Выйти</button>
-        <Link to="/">НА ГЛАВНУЮ</Link>
-        <Link to="/users">Пользователи</Link>
+        <ul className="nav">
+          <li className="nav-item">
+            <a className="nav-link" onClick={logOut} href="#">Выйти</a>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/">Главная</Link>
+          </li>
+          <Admin>
+            <li className="nav-item">
+              <Link className="nav-link" to="/users">Пользователи</Link>
+            </li>
+          </Admin>
+
+        </ul>
         <Switch>
           <Route path="/" component={RoomsListPage} exact/>
           <Route path="/room-details/:id" exact>
@@ -38,7 +49,7 @@ const App = ({logOut}) => {
           </Route>
           <Route path="/login" component={LoginPage}/>
           <Route path="/room-details/:id/editing">
-            <AdminEditingPage />
+            <EditingForm />
           </Route>
           <Route path="/create">
             <RoomCreate />
@@ -48,7 +59,6 @@ const App = ({logOut}) => {
           </Route>
         </Switch>
       </Auth>
-      {/* <RoomsQueue /> */}
     </Container>
   )
 }

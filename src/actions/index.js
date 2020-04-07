@@ -39,32 +39,11 @@ const logOut = () => {
   }
 }
 
-const timePicked = (rooms, id, startDate, endDate, name) => {
-  const idx = rooms.findIndex((el) => el.id == id);
-
-  const item = rooms.find((item) => item.id == id);
-  item.reservedTime = 
-  [
-    ...item.reservedTime,
-    {startDate: startDate, endDate:endDate, userName: name}]
-
-  const newRooms = [
-    ...rooms.slice(0, idx),
-    item,
-    ...rooms.slice(idx + 1)
-  ]
-  return {
-    type: 'TIME_PICKED',
-    payload: newRooms
-  }
-}
-
 export {
   roomsLoaded,
   roomsError,
   roomsRequested,
   selectRoom,
-  timePicked,
   isLogIn,
   logOut
 };

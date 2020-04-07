@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, } from 'react';
 
 import { reduxForm, Field } from 'redux-form';
 import { withRouter } from 'react-router-dom';
@@ -12,11 +12,19 @@ const LoginForm = ({ handleSubmit }) => {
     <form onSubmit={handleSubmit}>
       <div className="form-group">
         <label>Login</label>
-        <Field className="form-control" component={'input'} name='login'/>
+        <Field 
+        className="form-control" 
+        component={'input'} 
+        name='login' 
+        required/>
       </div>
       <div className="form-group"> 
         <label>Password</label>
-        <Field className="form-control" name='password' component={'input'} />
+        <Field 
+        className="form-control" 
+        name='password' 
+        component={'input'}
+        required />
       </div>
       <button className="btn btn-primary">войти</button>
     </form>
@@ -37,7 +45,7 @@ const LoginPage = ({history, isLogIn}) => {
       const user = users.find((item) => {
         return item.login === data.login
       })
-      if(user|| user.password === data.password) {
+      if(user && user.password === data.password) {
         isLogIn(user);
       }
     })

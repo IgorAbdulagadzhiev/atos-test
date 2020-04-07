@@ -30,14 +30,14 @@ const RoomDetailsContainer = ({selectRoom, isAdmin}) => {
     return null
   }
 
-  const adminBtn = isAdmin ? <Link to={`${url}/editing`}>Редактировать</Link> : null;
+  const adminBtn = isAdmin ? <Link className="btn btn-primary" to={`${url}/editing`}>Редактировать</Link> : null;
 
   return (
     <>
       <RoomDetails room={room}/>
       <ReservationTime room={room}/>
       <div>
-        <Link to={`${url}/reservation`} className="btn btn-primary">Забронировать</Link>
+        <Link to={`${url}/reservation`} className="btn btn-primary mr-2">Забронировать</Link>
         {adminBtn}
       </div>
     </>

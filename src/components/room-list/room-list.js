@@ -1,41 +1,37 @@
-import React from 'react';
+import React, {useState, useEffect, useContext } from 'react';
 import RoomListItem from '../room-list-item';
-import { connect } from 'react-redux';
-import { roomsLoaded } from '../../actions';
-import { ListGroup } from 'react-bootstrap';
-import { useRoomsLoaded } from '../../hooks';
 import { Link } from 'react-router-dom';
+import RoomsServiceContext from '../rooms-service-context';
 
-const RoomList = ({ rooms, roomsLoaded, loading,}) => {
-  useRoomsLoaded(roomsLoaded);
+const RoomList = () => {
+  const [ rooms, setRooms] = useState([]);
+  const roomsService = useContext(RoomsServiceContext);
 
-  if (loading) {
-    return <div>loading</div>
-  }
+  useEffect(() => {
+    roomsService.getRooms().then((data) => {
+      setRooms(data)
+    })
+  },[ roomsService ]);
 
   return (
-    <ListGroup as="ul">
-      {
-        rooms.map((room) => {
-          return (
-          <Link to={`room-details/${room.id}`} key={room.id}>
-            <ListGroup.Item action as="li">
-              <RoomListItem room={room} />
-            </ListGroup.Item>
-          </Link>
-          )
-        })
-      }
-    </ListGroup>
+    <> 
+      <h2>Список комнат</h2>
+      <div className="list-group">
+        {
+          rooms.map((room) => {
+            return (
+                <Link 
+                className="list-group-item list-group-item-action" 
+                to={`room-details/${room.id}`} 
+                key={room.id}>
+                  <RoomListItem room={room} />
+                </Link>
+            )
+          })
+        }
+      </div>
+    </>
   );
 };
 
-const mapStateToProps = ({ userReducer: { rooms, loading }}) => {
-  return { rooms, loading,};
-};
-
-const MapDispatchToProps = {
-  roomsLoaded
-}
-
-export default connect(mapStateToProps, MapDispatchToProps)(RoomList);
+export default (RoomList);
