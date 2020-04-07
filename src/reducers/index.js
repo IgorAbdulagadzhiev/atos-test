@@ -10,27 +10,6 @@ const initialState = {
 const userReducer = (state = initialState, action) => {
 
   switch (action.type) {
-    case 'FETCH_ROOMS_REQUEST':
-      return {
-        ...state,
-        rooms: [],
-        loading: true,
-        error: null
-      }
-    case 'FETCH_ROOMS_SUCCESS':
-      return {
-        ...state,
-        rooms: action.payload,
-        loading: false,
-        error: null
-      };
-    case 'FETCH_ROOMS_FAILURE':
-      return {
-        ...state,
-        rooms: [],
-        loading: false,
-        error: action.payload
-      }
     case 'SELECT_ROOM':
       return {
         ...state,
